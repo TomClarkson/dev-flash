@@ -11,7 +11,11 @@ class CategoryList extends Component {
   }
 
   render() {
-    return <ul>CategoryList</ul>;
+    return (
+      <ul>
+        {this.renderList()}
+      </ul>
+    );
   }
 }
 
