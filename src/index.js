@@ -2,10 +2,16 @@
 import React from 'react';
 
 // create new component. should produce some html.
-
+import FlashCard from './components/flash-card';
+import CategoryList from './components/category-list';
 
 const App = function() {
-  return <div>Hi!</div>;
+  return (
+    <div>
+      <FlashCard />
+      <CategoryList />
+    </div>;
+  );
 };
 // Take this component HTML and put it on page / in the DOM
 
