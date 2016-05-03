@@ -11,7 +11,7 @@ class CategoryList extends Component {
     return this.props.categories.map(category => {
       return (
         <li key={category.name} className="list-group-item">{category.name}</li>
-      );
+      )
     })
   }
 
@@ -20,14 +20,14 @@ class CategoryList extends Component {
       <ul className="list-group col-sm-4">
         {this.renderList()}
       </ul>
-    );
+    )
   }
 }
 
 // function to connect CategoryList to props
 function mapStateToProps(state) {
   return {
-    categories: state.categories;
+    categories: state.categories
   }
 };
 

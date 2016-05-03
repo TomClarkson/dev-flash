@@ -14,5 +14,5 @@ export default function() {
     {name: 'git'},
     {name: 'unix'},
     {name: 'miscellaneous'}
-  ];
+  ]
 }
