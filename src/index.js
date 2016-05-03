@@ -1,18 +1,19 @@
-// find react library and attach to variable React
+/*
+This file inserts application component into DOM element, e.g. .container
+*/
+
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
-// create new component. should produce some html.
-import FlashCard from './components/flash-card';
-import CategoryList from './components/category-list';
+import App from './components/app';
+import reducers from './reducers';
 
-const App = function() {
-  return (
-    <div>
-      <FlashCard />
-      <CategoryList />
-    </div>;
-  );
-};
-// Take this component HTML and put it on page / in the DOM
+const createStoreWithMiddleware = applyMiddleware()(createStore);
 
-React.render(App);
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <App />
+  </Provider>
+  , document.querySelector('.container'));
