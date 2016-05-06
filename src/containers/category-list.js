@@ -5,6 +5,8 @@ Will list all categories and allow user to toggle which ones are selected
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toggleCategory } from './../actions/index';
+import { bindActionCreators } from 'redux';
 
 class CategoryList extends Component {
   renderList() {
@@ -29,6 +31,11 @@ function mapStateToProps(state) {
   return {
     categories: state.categories
   }
+};
+
+// function to make actions available on props
+function mapDispatchToProps() {
+  return bindActionCreators({toggleCategory: toggleCategory}, dispatch);
 };
 
 // connects CategoryList to props
