@@ -1,6 +1,6 @@
 export function toggleCategory(category) {
   return {
-    action: 'CATEGORY_TOGGLED',
+    type: 'CATEGORY_TOGGLED',
     payload: category
   };
 }

@@ -6,9 +6,11 @@ Exports state
 
 import { combineReducers } from 'redux';
 import CategoriesReducer from './reducer_categories';
+import SelectedCategories from './reducer_selected_categories';
 
 const rootReducer = combineReducers({
-  categories: CategoriesReducer // val is whatever gets returned from CategoriesReducer fcn
+  categories: CategoriesReducer, // val is whatever gets returned from CategoriesReducer fcn
+  selectedCategories: SelectedCategories
 });
 
 export default rootReducer;
