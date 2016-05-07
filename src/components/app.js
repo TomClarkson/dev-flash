@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // create new component. should produce some html.
 // import FlashCardDeck from './containers/flash-card-deck';
 import CategoryList from './../containers/category-list';
+import FlashCardDeck from './../containers/flash-card-deck';
 
 // this is the "master" App component that holds containers
 export default class App extends Component {
@@ -11,6 +12,7 @@ export default class App extends Component {
     return (
       <div>
         <CategoryList />
+        <FlashCardDeck />
       </div>
     );
   }
