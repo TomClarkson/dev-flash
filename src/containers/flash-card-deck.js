@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import FlashCard from './../components/flash-card';
 
 class FlashCardDeck extends Component {
   renderDeck() {
     return (
       this.props.cards.map(card => {
         return (
-          <div key={card.id}>
-            {card.text}
-            <h5>{card.category}</h5>
-          </div>
+          <FlashCard key={card.id} cardData={card} />
         );
+      })
+    )
+  }
+
+  renderCategories() {
+
+    if (!this.props.selectedCategories) {
+      return (
+        <p>No categories selected!</p>
+      )
+    }
+
+    return (
+      this.props.selectedCategories.map(category => {
+        return(
+          <p key={category}>{category}</p>
+        )
       })
     )
   }
@@ -19,6 +34,7 @@ class FlashCardDeck extends Component {
   render() {
     return (
       <div>
+        {this.renderCategories()}
         {this.renderDeck()}
       </div>
     )
