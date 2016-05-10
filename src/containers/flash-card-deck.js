@@ -24,9 +24,9 @@ class FlashCardDeck extends Component {
 
     return (
       this.props.selectedCategories.map(category => {
-        return(
+        return (
           <p key={category}>{category}</p>
-        )
+        );
       })
     )
   }
@@ -43,7 +43,7 @@ class FlashCardDeck extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectedCategores: state.selectedCategories,
+    selectedCategories: state.selectedCategories,
     cards: state.cards
   }
 }
