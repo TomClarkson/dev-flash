@@ -1,3 +1,15 @@
 li.selected-category {
   background-color: green;
 }
+
+.flash-card {
+  display: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+}
+
+.flash-card.active-flash-card {
+  display: block;
+}

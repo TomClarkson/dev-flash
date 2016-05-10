@@ -8,7 +8,7 @@ class FlashCardDeck extends Component {
     return (
       this.props.cards.map(card => {
         return (
-          <FlashCard key={card.id} cardData={card} />
+          <FlashCard key={card.id} cardData={card} currCard={this.props.currentCard} />
         );
       })
     )
@@ -16,7 +16,7 @@ class FlashCardDeck extends Component {
 
   renderCategories() {
 
-    if (!this.props.selectedCategories) {
+    if (this.props.selectedCategories.length === 0) {
       return (
         <p>No categories selected!</p>
       )
@@ -25,7 +25,7 @@ class FlashCardDeck extends Component {
     return (
       this.props.selectedCategories.map(category => {
         return (
-          <p key={category}>{category}</p>
+          <span key={category}>{category + " "}</span>
         );
       })
     )
