@@ -5,6 +5,7 @@ Will list all categories and allow user to toggle which ones are selected
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import SelectAll from './../components/select-all-button';
 import { toggleCategory } from './../actions/index';
 import { bindActionCreators } from 'redux';
 
@@ -26,7 +27,7 @@ class CategoryList extends Component {
   render() {
     return (
       <ul className="list-group col-sm-4">
-        <li className="list-group-item">select all</li>
+        <SelectAll />
         {this.renderList()}
       </ul>
     )
