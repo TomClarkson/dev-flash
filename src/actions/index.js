@@ -4,3 +4,17 @@ export function toggleCategory(category) {
     payload: category
   };
 }
+
+export function selectAll() {
+  return {
+    type: 'SELECT_ALL',
+    payload: null
+  }
+}
+
+export function deselectAll() {
+  return {
+    type: 'DESELECT_ALL',
+    payload: null
+  }
+}

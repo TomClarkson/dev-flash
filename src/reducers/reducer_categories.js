@@ -3,16 +3,33 @@ This reducer creates the "categories" piece of state
 Will probably not need to handle actions, since categories are unchanging
 */
 
-export default function() {
-  return [
-    {name: 'javascript'},
-    {name: 'html'},
-    {name: 'css'},
-    {name: 'angular'},
-    {name: 'cs fundamentals'},
-    {name: 'node'},
-    {name: 'git'},
-    {name: 'unix'},
-    {name: 'miscellaneous'}
-  ]
+var initialCategories = [
+  {name: 'javascript'},
+  {name: 'html'},
+  {name: 'css'},
+  {name: 'angular'},
+  {name: 'cs fundamentals'},
+  {name: 'node'},
+  {name: 'git'},
+  {name: 'unix'},
+  {name: 'miscellaneous'}
+];
+
+export default function(state=initialCategories, action) {
+  switch(action.type) {
+    case 'CATEGORY_TOGGLED':
+      let categories = state.slice();
+      let categoryToToggle = action.payload.name;
+      let findCategory = (category) => {
+        return category.name === categoryToToggle;
+      };
+      let categoryIndex = categories.findIndex(findCategory);
+
+      categories[categoryIndex].selected = !categories[categoryIndex].selected;
+
+      return categories;
+      
+    default:
+      return state;
+  }
 }

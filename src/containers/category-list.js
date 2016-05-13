@@ -5,7 +5,6 @@ Will list all categories and allow user to toggle which ones are selected
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SelectAll from './../components/select-all-button';
 import { toggleCategory } from './../actions/index';
 import { bindActionCreators } from 'redux';
 
@@ -17,17 +16,26 @@ class CategoryList extends Component {
           key={category.name}
           onClick={() => this.props.toggleCategory(category)}
           // if category is selected, add a class to the li to highlight it
-          className={"list-group-item" + (this.props.selectedCategories.indexOf(category.name) > -1 ? " selected-category" : "")}>
+          className={"list-group-item" + (category.selected ? " selected-category" : "")}>
           {category.name}
         </li>
       )
     })
   }
 
+  renderSelectAll() {
+    return (
+      <li className="list-group-item">
+        <button>select all</button>
+        <button>deselect all</button>
+      </li>
+    )
+  }
+
   render() {
     return (
       <ul className="list-group col-sm-4">
-        <SelectAll />
+        {this.renderSelectAll()}
         {this.renderList()}
       </ul>
     )
@@ -37,8 +45,7 @@ class CategoryList extends Component {
 // function to connect CategoryList to props
 function mapStateToProps(state) {
   return {
-    categories: state.categories,
-    selectedCategories: state.selectedCategories
+    categories: state.categories
   }
 };
 

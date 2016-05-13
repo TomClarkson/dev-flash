@@ -14,27 +14,26 @@ class FlashCardDeck extends Component {
     )
   }
 
-  renderCategories() {
-
-    if (this.props.selectedCategories.length === 0) {
-      return (
-        <p>No categories selected!</p>
-      )
-    }
-
-    return (
-      this.props.selectedCategories.map(category => {
-        return (
-          <span key={category}>{category + " "}</span>
-        );
-      })
-    )
-  }
+  // renderCategories() {
+  //
+  //   if (this.props.selectedCategories.length === 0) {
+  //     return (
+  //       <p>No categories selected!</p>
+  //     )
+  //   }
+  //
+  //   return (
+  //     this.props.selectedCategories.map(category => {
+  //       return (
+  //         <span key={category}>{category + " "}</span>
+  //       );
+  //     })
+  //   )
+  // }
 
   render() {
     return (
       <div>
-        {this.renderCategories()}
         {this.renderDeck()}
       </div>
     )
@@ -43,7 +42,6 @@ class FlashCardDeck extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectedCategories: state.selectedCategories,
     cards: state.cards
   }
 }
