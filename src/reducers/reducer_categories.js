@@ -16,20 +16,29 @@ var initialCategories = [
 ];
 
 export default function(state=initialCategories, action) {
+  let categories = state.slice();
   switch(action.type) {
     case 'CATEGORY_TOGGLED':
-      let categories = state.slice();
       let categoryToToggle = action.payload.name;
       let findCategory = (category) => {
         return category.name === categoryToToggle;
       };
       let categoryIndex = categories.findIndex(findCategory);
-
+      // invert category selected status
       categories[categoryIndex].selected = !categories[categoryIndex].selected;
 
       return categories;
-      
+    case 'SELECT_ALL':
+      return categories.map(function(category) {
+        category.selected = true;
+        return category;
+      });
+    case 'DESELECT_ALL':
+      return categories.map(function(category) {
+        category.selected = false;
+        return category;
+      });
     default:
       return state;
   }
-}
+};
