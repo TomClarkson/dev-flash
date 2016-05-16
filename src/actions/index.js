@@ -18,3 +18,10 @@ export function deselectAll() {
     payload: null
   }
 }
+
+export function skipCard() {
+  return {
+    type: 'SKIP_CARD',
+    payload: null
+  }
+}

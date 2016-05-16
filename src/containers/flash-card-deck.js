@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { skipCard } from './../actions/index';
+import { bindActionCreators } from 'redux';
 
 import FlashCard from './../components/flash-card';
 
@@ -8,28 +10,11 @@ class FlashCardDeck extends Component {
     return (
       this.props.cards.map(card => {
         return (
-          <FlashCard key={card.id} cardData={card} currCard={this.props.currentCard} />
+          <FlashCard key={card.id} cardData={card} currCard={this.props.currentCard} skipCard={this.props.skipCard} />
         );
       })
     )
   }
-
-  // renderCategories() {
-  //
-  //   if (this.props.selectedCategories.length === 0) {
-  //     return (
-  //       <p>No categories selected!</p>
-  //     )
-  //   }
-  //
-  //   return (
-  //     this.props.selectedCategories.map(category => {
-  //       return (
-  //         <span key={category}>{category + " "}</span>
-  //       );
-  //     })
-  //   )
-  // }
 
   render() {
     return (
@@ -46,4 +31,11 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(FlashCardDeck);
+// function to make actions available on props
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    skipCard: skipCard
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlashCardDeck);

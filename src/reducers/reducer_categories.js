@@ -1,6 +1,5 @@
 /*
 This reducer creates the "categories" piece of state
-Will probably not need to handle actions, since categories are unchanging
 */
 
 var initialCategories = [

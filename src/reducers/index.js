@@ -6,7 +6,6 @@ Exports state
 
 import { combineReducers } from 'redux';
 import CategoriesReducer from './reducer_categories';
-import SelectedCategories from './reducer_selected_categories';
 import CardsReducer from './reducer_cards';
 
 const rootReducer = combineReducers({

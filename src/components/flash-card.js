@@ -7,7 +7,7 @@ class FlashCard extends Component {
         className={"flash-card" + (this.props.cardData.active ? " active-flash-card": "")} >
         {this.props.cardData.text}
         <h6>{this.props.cardData.category}</h6>
-        <button>Skip</button>
+        <button onClick={() => this.props.skipCard()}>Skip</button>
         <button>Flip</button>
         <button>Remove</button>
       </div>
