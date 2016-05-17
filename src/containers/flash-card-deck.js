@@ -8,7 +8,7 @@ import FlashCard from './../components/flash-card';
 class FlashCardDeck extends Component {
   renderDeck() {
     return (
-      this.props.cards.map(card => {
+      this.props.cards.cards.map(card => {
         return (
           <FlashCard key={card.id} cardData={card} currCard={this.props.currentCard} skipCard={this.props.skipCard} />
         );
@@ -27,7 +27,8 @@ class FlashCardDeck extends Component {
 
 function mapStateToProps(state) {
   return {
-    cards: state.cards
+    cards: state.cards,
+    categories: state.categories
   }
 }
 
