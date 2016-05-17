@@ -10,7 +10,7 @@ import CardsReducer from './reducer_cards';
 
 const rootReducer = combineReducers({
   categories: CategoriesReducer, // val is whatever gets returned from CategoriesReducer fcn
-  cards: CardsReducer
+  cardsData: CardsReducer
 });
 
 export default rootReducer;
