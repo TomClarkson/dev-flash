@@ -20,7 +20,7 @@ var questionsObj = {
 
 export default function(state=questionsObj, action) {
   // make copy of questions from state
-  let questions = Object.assign({}, state);
+  let questionsData = Object.assign({}, state);
 
   switch(action.type) {
     case 'SKIP_CARD':
@@ -29,21 +29,37 @@ export default function(state=questionsObj, action) {
       let findActive = (question) => {
         return question.active === true;
       }
-      let activeIndex = questions.cards.findIndex(findActive);
+      let activeIndex = questionsData.cards.findIndex(findActive);
 
       // deactivate
-      questions.cards[activeIndex].active = false;
+      questionsData.cards[activeIndex].active = false;
 
       // activate next one
-      questions.cards[activeIndex + 1].active = true;
+      questionsData.cards[activeIndex + 1].active = true;
 
-      return questions;
+      return questionsData;
     case 'CATEGORY_TOGGLED':
-
+      // find all cards that match the category that was toggled
+      questionsData.cards = questionsData.cards.map((card) => {
+        if (card.category === action.payload.name) {
+          // toggle card filtered status
+          card.filtered = !card.filtered;
+        }
+        return card;
+      });
+      return questionsData;
     case 'SELECT_ALL':
-      return cards;
+      questionsData.cards = questionsData.cards.map((card) => {
+        card.filtered = true;
+        return card;
+      });
+      return questionsData;
     case 'DESELECT_ALL':
-      return [];
+      questionsData.cards = questionsData.cards.map((card) => {
+        card.filtered = false;
+        return card;
+      });
+      return questionsData;
     default:
       return state;
   }
