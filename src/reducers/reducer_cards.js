@@ -34,8 +34,16 @@ export default function(state=questionsObj, action) {
       // deactivate
       questionsData.cards[activeIndex].active = false;
 
+      questionsData.cards.find((elem, index, arr) => {
+        if (elem.filtered && index > activeIndex) {
+          arr[index].active = true;
+          return true;
+        }
+      });
+
       // activate next one
-      questionsData.cards[activeIndex + 1].active = true;
+      // questionsData.cards[activeIndex + 1].active = true;
+      console.log(questionsData.cards);
 
       return questionsData;
     case 'CATEGORY_TOGGLED':

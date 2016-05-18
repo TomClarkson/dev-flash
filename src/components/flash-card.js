@@ -4,7 +4,7 @@ class FlashCard extends Component {
   render() {
     return (
       <div
-        className={"flash-card" + (this.props.cardData.filtered ? " active-flash-card": "")} >
+        className={"flash-card" + (this.props.cardData.filtered && this.props.cardData.active ? " active-flash-card": "")} >
         {this.props.cardData.text}
         <h6>{this.props.cardData.category}</h6>
         <button onClick={() => this.props.skipCard()}>Skip</button>
