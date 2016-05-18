@@ -34,9 +34,10 @@ export default function(state=questionsObj, action) {
       // deactivate
       questionsData.cards[activeIndex].active = false;
 
+      // find next card in array (greater index) that is filtered
       questionsData.cards.find((elem, index, arr) => {
         if (elem.filtered && index > activeIndex) {
-          arr[index].active = true;
+          arr[index].active = true; // set active to true
           return true;
         }
       });
