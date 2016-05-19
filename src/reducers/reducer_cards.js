@@ -9,8 +9,6 @@ var questionsArr = [
 
 // randomize/ shuffle questions
 
-// activate first card in deck
-// questionsArr[0].active = true;
 
 export default function(state=questionsArr, action) {
   // make copy of questions from state
@@ -39,19 +37,28 @@ export default function(state=questionsArr, action) {
       return questionsData;
     case 'CATEGORY_TOGGLED':
       // find all cards that match the category that was toggled
-      questionsData = questionsData.map((card) => {
+      questionsData.map((card) => {
         if (card.category === action.payload.name) {
           // toggle card inDeck status
           card.inDeck = !card.inDeck;
+          // deactivate any active card, if any
           card.active = false;
         }
-        return card;
       });
-      questionsData[0].active = true;
+
+      // make first inDeck card active
+      questionsData.find((card) => {
+        if (card.inDeck) {
+          card.active = true;
+          return true;
+        }
+      });
+
       return questionsData;
     case 'SELECT_ALL':
       questionsData = questionsData.map((card) => {
         card.inDeck = true;
+        card.active = false;
         return card;
       });
       questionsData[0].active = true;
