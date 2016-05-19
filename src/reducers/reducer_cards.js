@@ -13,14 +13,14 @@ var questionsArr = [
 questionsArr[0].active = true;
 
 // object to hold all relevant data
-var questionsObj = {
-  cards: questionsArr,
-  filter: [] // categories to include in filter
-};
+// var questionsObj = {
+//   cards: questionsArr,
+//   filter: [] // categories to include in filter
+// };
 
-export default function(state=questionsObj, action) {
+export default function(state=questionsArr, action) {
   // make copy of questions from state
-  let questionsData = Object.assign({}, state);
+  let questionsData = state.slice();
 
   switch(action.type) {
     case 'SKIP_CARD':
@@ -29,27 +29,23 @@ export default function(state=questionsObj, action) {
       let findActive = (question) => {
         return question.active === true;
       }
-      let activeIndex = questionsData.cards.findIndex(findActive);
+      let activeIndex = questionsData.findIndex(findActive);
 
       // deactivate
-      questionsData.cards[activeIndex].active = false;
+      questionsData[activeIndex].active = false;
 
       // find next card in array (greater index) that is filtered
-      questionsData.cards.find((elem, index, arr) => {
+      questionsData.find((elem, index, arr) => {
         if (elem.filtered && index > activeIndex) {
-          arr[index].active = true; // set active to true
+          elem.active = true; // set active to true
           return true;
         }
       });
 
-      // activate next one
-      // questionsData.cards[activeIndex + 1].active = true;
-      console.log(questionsData.cards);
-
       return questionsData;
     case 'CATEGORY_TOGGLED':
       // find all cards that match the category that was toggled
-      questionsData.cards = questionsData.cards.map((card) => {
+      questionsData = questionsData.map((card) => {
         if (card.category === action.payload.name) {
           // toggle card filtered status
           card.filtered = !card.filtered;
@@ -58,13 +54,13 @@ export default function(state=questionsObj, action) {
       });
       return questionsData;
     case 'SELECT_ALL':
-      questionsData.cards = questionsData.cards.map((card) => {
+      questionsData = questionsData.map((card) => {
         card.filtered = true;
         return card;
       });
       return questionsData;
     case 'DESELECT_ALL':
-      questionsData.cards = questionsData.cards.map((card) => {
+      questionsData = questionsData.map((card) => {
         card.filtered = false;
         return card;
       });
