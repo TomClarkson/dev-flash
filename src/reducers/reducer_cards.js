@@ -41,9 +41,9 @@ export default function(state=questionsArr, action) {
         if (card.category === action.payload.name) {
           // toggle card inDeck status
           card.inDeck = !card.inDeck;
-          // deactivate any active card, if any
-          card.active = false;
         }
+        // deactivate active card, if any
+        card.active = false;
       });
 
       // make first inDeck card active
